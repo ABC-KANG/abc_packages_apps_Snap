@@ -1913,6 +1913,7 @@ public class CaptureModule implements CameraModule, PhotoController,
                         ImageAvailableListener listener = new ImageAvailableListener(i) {
                             @Override
                             public void onImageAvailable(ImageReader reader) {
+                                Location location = mLocationManager.getCurrentLocation();
                                 if (mIsSupportedQcfa) {
                                     mHandler.post(new Runnable() {
                                         @Override
@@ -1952,7 +1953,7 @@ public class CaptureModule implements CameraModule, PhotoController,
                                             }
                                         } else {
                                             mActivity.getMediaSaveService().addImage(bytes, title, date,
-                                                    null, image.getWidth(), image.getHeight(), orientation, null,
+                                                    location, image.getWidth(), image.getHeight(), orientation, null,
                                                     mOnMediaSavedListener, mContentResolver, "jpeg");
 
                                             if (mLongshotActive) {
@@ -1994,6 +1995,7 @@ public class CaptureModule implements CameraModule, PhotoController,
                 new ImageReader.OnImageAvailableListener() {
                     @Override
                     public void onImageAvailable(ImageReader reader) {
+                        Location location = mLocationManager.getCurrentLocation();
                         Image image = reader.acquireNextImage();
                         mCaptureStartTime = System.currentTimeMillis();
                         mNamedImages.nameNewImage(mCaptureStartTime);
@@ -2009,7 +2011,7 @@ public class CaptureModule implements CameraModule, PhotoController,
                         int orientation = Exif.getOrientation(exif);
 
                         mActivity.getMediaSaveService().addImage(bytes, title, date,
-                                null, image.getWidth(), image.getHeight(), orientation, null,
+                                location, image.getWidth(), image.getHeight(), orientation, null,
                                 mOnMediaSavedListener, mContentResolver, "jpeg");
 
                         mActivity.updateThumbnail(bytes);
