@@ -15,7 +15,7 @@
 -->
 <resources>
     <color name="white">#fafafa</color>
-    <color name="black">#212121</color>
+    <color name="black">#000000</color>
     <color name="grey">#e0e0e0</color>
     <color name="transparent">@android:color/transparent</color>
 
