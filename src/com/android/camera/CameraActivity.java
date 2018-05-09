@@ -685,12 +685,9 @@ public class CameraActivity extends Activity
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
 
-        int newSystemUIVisibility = DEFAULT_SYSTEM_UI_VISIBILITY
-                | (visible ? View.SYSTEM_UI_FLAG_VISIBLE :
-                    View.SYSTEM_UI_FLAG_LOW_PROFILE
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        int newSystemUIVisibility = systemUIVisibility
+                | (visible ? View.SYSTEM_UI_FLAG_VISIBLE : systemUINotVisible);
+
         if (newSystemUIVisibility != currentSystemUIVisibility) {
             decorView.setSystemUiVisibility(newSystemUIVisibility);
         }
